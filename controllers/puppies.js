@@ -40,9 +40,20 @@ async function update(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const puppy = await Puppy.findById(req.params.puppyId)
+    res.json(puppy)
+  } catch (error) {
+    console.log(error)
+    res.json(error)
+  }
+}
+
 export {
   create,
   index,
   deletePuppy as delete,
-  update
+  update,
+  show
 }
