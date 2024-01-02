@@ -30,8 +30,19 @@ async function deletePuppy(req, res) {
   }
 }
 
+async function update(req, res) {
+  try {
+    const updatedPuppy = await Puppy.findByIdAndUpdate(req.params.puppyId, req.body, {new: true})
+    res.json(updatedPuppy)
+  } catch (error) {
+    console.log(error)
+    res.json(error)
+  }
+}
+
 export {
   create,
   index,
-  deletePuppy as delete
+  deletePuppy as delete,
+  update
 }
